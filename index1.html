@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Element Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Element Generator</h1>
+    <button onclick="generateRandomElements()">Generate Random Elements</button>
+    
+    <div class="result" id="result"></div>
+
+    <script>
+        const elements = ["ไฟ", "น้ำ", "ดิน", "ลม", "แสง", "มืด", "สายฟ้า", "น้ำแข็ง"];
+        const levels = ["ต่ำ", "กลาง", "สูง", "สูงสุด"];
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomElement() {
+            const randomIndex = getRandomNumber(0, elements.length - 1);
+            return elements[randomIndex];
+        }
+
+        function getRandomLevel() {
+            const randomIndex = getRandomNumber(0, levels.length - 1);
+            return levels[randomIndex];
+        }
+
+        function generateRandomElements() {
+            const numElements = getRandomNumber(1, 8);
+            let resultHtml = `<h2>Random Elements (${numElements} ธาตุ)</h2><ul>`;
+            
+            for (let i = 0; i < numElements; i++) {
+                const element = getRandomElement();
+                const level = getRandomLevel();
+                resultHtml += `<li>${element} - ระดับ: ${level}</li>`;
+            }
+
+            resultHtml += "</ul>";
+            document.getElementById("result").innerHTML = resultHtml;
+        }
+    </script>
+    
+</body>
+</html>
